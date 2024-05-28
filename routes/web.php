@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('Layouts.App');
 // });
 
-
-
 Route::get('/',[HomeController::class,'index']);
 Route::get('/about',[HomeController::class,'about']);
 Route::get('/service',[HomeController::class,'service']);
