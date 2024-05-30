@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Mail\WelcomeRegisterMail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -37,7 +39,7 @@ class RegisterController extends Controller
             'password'=>$request->password
         ]);
 
-
+        Mail::to($request->email)->send(new WelcomeRegisterMail($request->name));
 
 
 
