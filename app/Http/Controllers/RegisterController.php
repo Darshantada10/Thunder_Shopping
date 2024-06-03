@@ -80,7 +80,7 @@ class RegisterController extends Controller
         // dd($data);
         if(Auth::attempt($data))
         {
-            dd("Your Password is correct");
+            return redirect('/home');
         }
         else
         {
