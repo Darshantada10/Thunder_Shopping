@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id(); // primary key by default whose name is ID
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('role')->comment('0 = user, 1 = admin, 2 = delivery_boy')->default(0);
             // $table->string('mobile')->unique();
             // $table->string('city')->nullable();
             $table->timestamp('email_verified_at')->nullable();
