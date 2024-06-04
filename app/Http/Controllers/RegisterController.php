@@ -80,7 +80,22 @@ class RegisterController extends Controller
         // dd($data);
         if(Auth::attempt($data))
         {
-            return redirect('/home');
+            if(Auth::user()->role == 0)
+            {
+                return redirect('/home');
+            }
+            else if(Auth::user()->role == 1)
+            {
+                return redirect('/admin');
+            }
+            else if(Auth::user()->role == 2)
+            {
+                return redirect('/delivery');
+            }
+            else
+            {
+                return redirect('/login');
+            }
         }
         else
         {
