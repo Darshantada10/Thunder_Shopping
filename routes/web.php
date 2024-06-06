@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,6 @@ Route::post('/login',[RegisterController::class,'verify']);
 
 
 Route::get('/admin',[AdminController::class,'index']);
+
+Route::get('/admin/brands',[BrandController::class,'Index']);
+Route::get('/admin/brand/create',[BrandController::class,'CreateForm']);
