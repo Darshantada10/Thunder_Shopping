@@ -30,3 +30,4 @@ Route::get('/admin',[AdminController::class,'index']);
 
 Route::get('/admin/brands',[BrandController::class,'Index']);
 Route::get('/admin/brand/create',[BrandController::class,'CreateForm']);
+Route::post('/admin/brand/create',[BrandController::class,'Save']);
