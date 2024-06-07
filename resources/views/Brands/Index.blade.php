@@ -3,7 +3,7 @@
 
 @section('content')
 
-
+{{-- {{dd($brands)}} --}}
 
 <div class="card">
     <h5 class="card-header">
@@ -28,17 +28,25 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($brands as $brand)
+                {{-- {{dd($brand)}} --}}
           <tr>
-            <th scope="row">1</th>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-            <td>Table cell</td>
-           
+            
+            <th scope="row">{{$brand->id}}</th>
+            <td>{{$brand->name}}</td>
+            <td>{{$brand->seller}}</td>
+            <td>{{$brand->location}}</td>
+            <td>{{$brand->origin}}</td>
+            <td>{{$brand->rating}}</td>
+            <td>
+                <a href="{{url('/admin/brand/update')}}" class="btn btn-sm btn-primary text-white">Update</a>
+                <a href="{{url('/admin/brand/delete')}}" class="btn btn-sm btn-danger text-white">Delete</a>
+            </td>
+            
           </tr>
-         
+
+            @endforeach
+            
         </tbody>
       </table>
     </div>
