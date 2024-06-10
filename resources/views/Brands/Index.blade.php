@@ -5,6 +5,17 @@
 
 {{-- {{dd($brands)}} --}}
 
+@if (session('success'))
+      <div class="alert alert-success">{{session('success')}}</div>
+@endif
+@if (session('danger'))
+      <div class="alert alert-danger">{{session('danger')}}</div>
+@endif
+@if (session('primary'))
+      <div class="alert alert-primary">{{session('primary')}}</div>
+@endif
+
+
 <div class="card">
     <h5 class="card-header">
         All Brands
@@ -39,8 +50,8 @@
             <td>{{$brand->origin}}</td>
             <td>{{$brand->rating}}</td>
             <td>
-                <a href="{{url('/admin/brand/update')}}" class="btn btn-sm btn-primary text-white">Update</a>
-                <a href="{{url('/admin/brand/delete')}}" class="btn btn-sm btn-danger text-white">Delete</a>
+                <a href="{{url('/admin/brand/update',['id'=>$brand->id])}}" class="btn btn-sm btn-primary text-white">Update</a>
+                <a href="/admin/brand/{{$brand->id}}/delete/" class="btn btn-sm btn-danger text-white">Delete</a>
             </td>
             
           </tr>
