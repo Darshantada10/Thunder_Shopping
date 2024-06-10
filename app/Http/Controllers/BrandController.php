@@ -33,7 +33,45 @@ class BrandController extends Controller
             'rating'=>$request->rating,
         ]);
 
-        return redirect('/admin/brands');
+        return redirect('/admin/brands')->with('primary','Brand Created Successfully');
+
+    }
+
+    public function UpdateForm($id)
+    {
+        // "SELECT * FROM BRANDS WHERE id = $id";
+        // dd($id);
+        // dd("inside controller");
+       $brand =  Brand::findOrFail($id);
+        // dd($brand);
+        return view('Brands.Update',compact('brand'));
+
+
+    }
+    public function UpdateData(Request $request,$id)
+    {
+        // dd($id);
+
+        $brand =  Brand::findOrFail($id);
+
+        $brand->update([
+            'name'=>$request->name,
+            'seller'=>$request->seller,
+            'origin'=>$request->origin,
+            'location'=>$request->location,
+            'rating'=>$request->rating,
+        ]);
+
+        return redirect('/admin/brands')->with('success','Brand Updated Successfully');
+    }
+
+    public function DeleteBrand($id)
+    {
+        $brand = Brand::findOrFail($id);
+        $brand->delete();
+
+        return redirect ('/admin/brands')->with('danger','Brand Deleted Successfully');
+
 
     }
 }
