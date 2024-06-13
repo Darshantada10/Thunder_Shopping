@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('origin');
             $table->string('rating');
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }
