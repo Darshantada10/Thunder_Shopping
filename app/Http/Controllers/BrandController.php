@@ -74,4 +74,12 @@ class BrandController extends Controller
 
 
     }
+    public function APIBrands()
+    {
+        $brands = Brand::all();
+        // echo $brands;
+
+        // return response()->json(['brands'=>$brands]);
+        return response(['brands'=>$brands]);
+    }
 }
