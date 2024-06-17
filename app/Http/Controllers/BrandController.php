@@ -25,12 +25,33 @@ class BrandController extends Controller
     public function Save(Request $request)
     {
         // dd($request);
+
+        $upload_logo = null;
+        if($request->hasFile('logo'))
+        {
+            // $logo = $request->file('logo');
+            // $filename = $request->logo.$logo->getClientOriginalExtension();
+            // $path = $_SERVER['DOCUMENT_ROOT'].'/logo/'.$request->logo;
+
+            // $logo->move($path,$filename);
+
+            // dd($logo);
+
+            $logo = $request->file('logo');
+            $extension = $logo->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $logo->move('brands/logo',$filename);
+            $upload_logo = $filename;
+
+        }
+
         Brand::create([
             'name'=>$request->name,
             'seller'=>$request->seller,
             'origin'=>$request->origin,
             'location'=>$request->location,
             'rating'=>$request->rating,
+            'logo'=>$upload_logo,
         ]);
 
         return redirect('/admin/brands')->with('primary','Brand Created Successfully');
@@ -50,9 +71,23 @@ class BrandController extends Controller
     }
     public function UpdateData(Request $request,$id)
     {
-        // dd($id);
+        // dd($request);
 
         $brand =  Brand::findOrFail($id);
+        // $upload_logo = null;
+
+        // dd($brand);
+
+        $upload_logo = $brand->logo;
+
+        if($request->hasFile('logo'))
+        {
+            $logo = $request->file('logo');
+            $extension = $logo->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $logo->move('brands/logo',$filename);
+            $upload_logo = $filename;
+        }
 
         $brand->update([
             'name'=>$request->name,
@@ -60,7 +95,10 @@ class BrandController extends Controller
             'origin'=>$request->origin,
             'location'=>$request->location,
             'rating'=>$request->rating,
+            'logo'=>$upload_logo,
         ]);
+
+
 
         return redirect('/admin/brands')->with('success','Brand Updated Successfully');
     }
