@@ -2,18 +2,20 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
-use App\Models\Product;
 use Filament\Forms;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use App\Models\Product;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Models\Brand;
 
 class ProductResource extends Resource
 {
@@ -25,6 +27,15 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
+                // TextInput::make('brand_id'),
+                Select::make('brand_id')
+                ->label('Brand Name')
+                ->options(Brand::all()->pluck('name','id'))
+                ->required()
+                ->searchable()
+                ->placeholder('Select a Brand'),
+
+
                 TextInput::make('product_data.name'),
                 TextInput::make('product_data.original_price'),
                 TextInput::make('product_data.discounted_price'),
@@ -54,6 +65,7 @@ class ProductResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
