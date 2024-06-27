@@ -24,7 +24,7 @@ Route::post('/register',[RegisterController::class,'savedata']);
 Route::get('/login',[RegisterController::class,'login']);
 Route::post('/login',[RegisterController::class,'verify']);
 
-
+Route::get('/testing',[AdminController::class,"Testing"]);
 
 Route::get('/admin',[AdminController::class,'index']);
 
