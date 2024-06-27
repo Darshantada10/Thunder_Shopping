@@ -109,8 +109,6 @@ class BrandController extends Controller
         $brand->delete();
 
         return redirect ('/admin/brands')->with('danger','Brand Deleted Successfully');
-
-
     }
     public function APIBrands()
     {
