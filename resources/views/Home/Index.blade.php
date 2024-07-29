@@ -1,6 +1,6 @@
 @extends('Layouts.App')
 
-@section('kuchbhi')
+@section('content')
 
 
 <hr>

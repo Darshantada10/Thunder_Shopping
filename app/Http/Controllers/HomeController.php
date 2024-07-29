@@ -8,6 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // dd("Inside Controller");
         // dd("Inside Method dd wala");
         // print_r("Inside Method printr wala");
         // Do and Die
