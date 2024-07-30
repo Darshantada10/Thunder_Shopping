@@ -23,17 +23,19 @@ Route::get('/register',[RegisterController::class,'index']);
 Route::post('/register',[RegisterController::class,'savedata']);
 
 Route::get('/login',[RegisterController::class,'login']);
+Route::get('/logout',[RegisterController::class,'logout']);
 Route::post('/login',[RegisterController::class,'verify']);
 
 Route::get('/testing',[AdminController::class,"Testing"]);
 
-Route::get('/admin',[AdminController::class,'index']);
 
 
 
-Route::prefix('/admin')->group(function(){
+Route::prefix('/admin')->middleware(['admin'])->group(function(){
 
-    
+    Route::get('/',[AdminController::class,'index']);
+
+    // Route::get('/brands',[BrandController::class,'Index'])->middleware('admin');
     Route::get('/brands',[BrandController::class,'Index']);
     Route::get('/api/all-brands',[BrandController::class,'APIBrands']);
     Route::get('/brand/create',[BrandController::class,'CreateForm']);
@@ -58,7 +60,7 @@ Route::prefix('/admin')->group(function(){
     Route::post('/product/update/{id}','saveupdatedata');
     
     Route::get('/product/delete/{id}','deletedata');
-});
+    });
 
 
 
