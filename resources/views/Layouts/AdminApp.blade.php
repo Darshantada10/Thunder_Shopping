@@ -158,6 +158,17 @@
                 <div data-i18n="Analytics">Brands</div>
               </a>
             </li>
+            
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Products</span>
+            </li>
+
+            <li class="menu-item">
+              <a href="/admin/products" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-shopping-bag"></i>
+                <div data-i18n="Analytics">Products</div>
+              </a>
+            </li>
 
             {{-- <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
