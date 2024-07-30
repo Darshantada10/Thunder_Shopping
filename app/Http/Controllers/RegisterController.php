@@ -8,6 +8,7 @@ use App\Mail\WelcomeRegisterMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
@@ -103,5 +104,12 @@ class RegisterController extends Controller
         }
 
         // dd($data);
+    }
+
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect('/home');
     }
 }
