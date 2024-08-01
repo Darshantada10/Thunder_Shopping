@@ -57,9 +57,10 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
     Route::post('/product/create','savedata');
     
     Route::get('/product/update/{id}','updateform');
-    Route::post('/product/update/{id}','saveupdatedata');
+    Route::put('/product/update/{id}','saveupdatedata');
+    // Route::patch('/product/update/{id}','saveupdatedata');
     
-    Route::get('/product/delete/{id}','deletedata');
+    Route::delete('/product/delete/{id}','deletedata');
     });
 
 
