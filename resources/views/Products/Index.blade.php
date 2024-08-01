@@ -23,39 +23,42 @@
             <i class="bx bx-list-plus"></i> Add Product</a>
 
 
-
+    {{-- @dd($products) --}}
     </h5>
     <div class="table-responsive text-nowrap">
       <table class="table">
         <thead>
           <tr class="text-nowrap">
             <th>ID</th>
-            <th>Name</th>
+            <th>Brand Name</th>
+            <th>Product Name</th>
+            <th>Original Price</th>
+            <th>Discounted Price</th>
             <th>Seller</th>
-            <th>Location</th>
-            <th>Brand Origin</th>
-            <th>Rating</th>
+            <th>Quantity</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          {{-- @foreach ($brands as $brand)
+          @foreach ($products as $product)
           <tr>
             
-            <th scope="row">{{$brand->id}}</th>
-            <td>{{$brand->name}}</td>
-            <td>{{$brand->seller}}</td>
-            <td>{{$brand->location}}</td>
-            <td>{{$brand->origin}}</td>
-            <td>{{$brand->rating}}</td>
+            <th scope="row">{{$product->id}}</th>
+            <td>{{$product->brand_id}}</td>
+            {{-- {{dd($product->product_data)}} --}}
+            <td>{{$product->product_data['name']}}</td>
+            <td>{{$product->product_data['original_price']}}</td>
+            <td>{{$product->product_data['discounted_price']}}</td>
+            <td>{{$product->product_data['seller']}}</td>
+            <td>{{$product->product_data['quantity']}}</td>
             <td>
-                <a href="{{url('/admin/brand/update',['id'=>$brand->id])}}" class="btn btn-sm btn-primary text-white">Update</a>
-                <a href="/admin/brand/{{$brand->id}}/delete/" class="btn btn-sm btn-danger text-white">Delete</a>
+                <a href="{{url('/admin/product/update',['id'=>$product->id])}}" class="btn btn-sm btn-primary text-white">Update</a>
+                <a href="/admin/product/delete/{{$product->id}}" class="btn btn-sm btn-danger text-white">Delete</a>
             </td>
             
           </tr>
 
-            @endforeach --}}
+            @endforeach
             
         </tbody>
       </table>
