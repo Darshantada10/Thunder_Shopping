@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,7 +16,10 @@ class HomeController extends Controller
 
         // return view("Layouts/App");
         // return view("Layouts.App");
-        return view("Home.Index");
+
+        $products = Product::all();
+        // dd($products);
+        return view("Home.Index",compact('products'));
     }
     public function about()
     {
