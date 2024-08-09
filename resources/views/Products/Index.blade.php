@@ -42,9 +42,9 @@
         <tbody>
           @foreach ($products as $product)
           <tr>
-            
+            {{-- {{dd($product->brand->location)}} --}}
             <th scope="row">{{$product->id}}</th>
-            <td>{{$product->brand_id}}</td>
+            <td>{{$product->brand->name}}</td>
             {{-- {{dd($product->product_data)}} --}}
             <td>{{$product->product_data['name']}}</td>
             <td>{{$product->product_data['original_price']}}</td>
@@ -52,9 +52,16 @@
             <td>{{$product->product_data['seller']}}</td>
             <td>{{$product->product_data['quantity']}}</td>
             <td>
+
                 <a href="{{url('/admin/product/update',['id'=>$product->id])}}" class="btn btn-sm btn-primary text-white">Update</a>
-                <a href="/admin/product/delete/{{$product->id}}" class="btn btn-sm btn-danger text-white">Delete</a>
-            </td>
+                <form action="{{url('admin/product/delete',['id'=>$product->id])}}" method="post">
+                  @method('delete')
+                  @csrf
+                  {{-- <a href="/admin/product/delete/{{$product->id}}" class="btn btn-sm btn-danger text-white">Delete</a> --}}
+                  <button type="submit" class="btn btn-sm btn-danger text-white">Delete</button>
+                </form>
+            
+              </td>
             
           </tr>
 

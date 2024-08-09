@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProductImageController;
 
 // Route::get('/', function () {
 //     // return view('layouts/App');
@@ -66,6 +67,8 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
     
     Route::get('/products','index');
 
+    // Route::get('/temp','tempdemo');
+
     Route::get('/product/create','createform');
     Route::post('/product/create','savedata');
     
@@ -74,9 +77,17 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
     // Route::patch('/product/update/{id}','saveupdatedata');
     
     Route::delete('/product/delete/{id}','deletedata');
+    // Route::get('/product/delete/{id}','deletedata');
+
+});
+
+    Route::controller(ProductImageController::class)->group(function()
+    {
+        Route::get('/product-images','index');
+
+        Route::get('/product-images/create','createform');
+        Route::post('/product-images/create','saveform');
     });
-
-
 
 
 
