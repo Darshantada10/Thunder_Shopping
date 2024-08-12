@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
@@ -44,53 +45,81 @@ Route::get('/testing',[AdminController::class,"Testing"]);
 
 
 
-
 Route::prefix('/admin')->middleware(['admin'])->group(function(){
 
-    Route::get('/',[AdminController::class,'index']);
-
-    // Route::get('/brands',[BrandController::class,'Index'])->middleware('admin');
-    Route::get('/brands',[BrandController::class,'Index']);
-    Route::get('/api/all-brands',[BrandController::class,'APIBrands']);
-    Route::get('/brand/create',[BrandController::class,'CreateForm']);
-    Route::post('/brand/create',[BrandController::class,'Save']);
+    // index routes
+    Route::get('/category',[CategoryController::class,'index']);
+    // create routes
+    Route::get('/category/create',[CategoryController::class,'create']);
+    Route::post('/category/create',[CategoryController::class,'store']);
+    // // update routes
+    Route::get('/category/{category}/edit/{id}',[CategoryController::class,'edit']);
+    // Route::put('/category/{category}/edit/{id}',[CategoryController::class,'update']);
+    // // delete routes
+    // Route::get('/category/{id}/delete',[CategoryController::class,'destroy']);
     
-    Route::get('/brand/update/{id}',[BrandController::class,'UpdateForm']);
-    Route::post('/brand/update/{id}',[BrandController::class,'UpdateData']);
-    Route::get('/brand/{id}/delete',[BrandController::class,'DeleteBrand']);
-    
-    // put patch delete any 
-    
-    // Route::get('/admin/products',[ProductController::class,'index']);
-
-    Route::controller(ProductController::class)->group(function(){
-    
-    Route::get('/products','index');
-
-    // Route::get('/temp','tempdemo');
-
-    Route::get('/product/create','createform');
-    Route::post('/product/create','savedata');
-    
-    Route::get('/product/update/{id}','updateform');
-    Route::put('/product/update/{id}','saveupdatedata');
-    // Route::patch('/product/update/{id}','saveupdatedata');
-    
-    Route::delete('/product/delete/{id}','deletedata');
-    // Route::get('/product/delete/{id}','deletedata');
-
-});
-
-    Route::controller(ProductImageController::class)->group(function()
-    {
-        Route::get('/product-images','index');
-
-        Route::get('/product-images/create','createform');
-        Route::post('/product-images/create','saveform');
-    });
-
 
 
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
+// Route::prefix('/admin')->middleware(['admin'])->group(function(){
+
+//     Route::get('/',[AdminController::class,'index']);
+
+//     // Route::get('/brands',[BrandController::class,'Index'])->middleware('admin');
+//     Route::get('/brands',[BrandController::class,'Index']);
+//     Route::get('/api/all-brands',[BrandController::class,'APIBrands']);
+//     Route::get('/brand/create',[BrandController::class,'CreateForm']);
+//     Route::post('/brand/create',[BrandController::class,'Save']);
+    
+//     Route::get('/brand/update/{id}',[BrandController::class,'UpdateForm']);
+//     Route::post('/brand/update/{id}',[BrandController::class,'UpdateData']);
+//     Route::get('/brand/{id}/delete',[BrandController::class,'DeleteBrand']);
+    
+//     // put patch delete any 
+    
+//     // Route::get('/admin/products',[ProductController::class,'index']);
+
+//     Route::controller(ProductController::class)->group(function(){
+    
+//     Route::get('/products','index');
+
+//     // Route::get('/temp','tempdemo');
+
+//     Route::get('/product/create','createform');
+//     Route::post('/product/create','savedata');
+    
+//     Route::get('/product/update/{id}','updateform');
+//     Route::put('/product/update/{id}','saveupdatedata');
+//     // Route::patch('/product/update/{id}','saveupdatedata');
+    
+//     Route::delete('/product/delete/{id}','deletedata');
+//     // Route::get('/product/delete/{id}','deletedata');
+
+// });
+
+//     Route::controller(ProductImageController::class)->group(function()
+//     {
+//         Route::get('/product-images','index');
+
+//         Route::get('/product-images/create','createform');
+//         Route::post('/product-images/create','saveform');
+//     });
+
+
+
+
+
+// });
