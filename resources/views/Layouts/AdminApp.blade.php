@@ -149,6 +149,17 @@
 
          
             <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Category</span>
+            </li>
+
+            <li class="menu-item">
+              <a href="{{url('/admin/category')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-category-alt"></i>
+                <div data-i18n="Analytics">Category</div>
+              </a>
+            </li>
+
+            {{-- <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Brands</span>
             </li>
 
@@ -179,7 +190,7 @@
                 <i class="menu-icon tf-icons bx bx-camera"></i>
                 <div data-i18n="Analytics">Product Images</div>
               </a>
-            </li>
+            </li> --}}
 
             {{-- <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
