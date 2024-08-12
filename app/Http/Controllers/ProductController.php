@@ -87,6 +87,9 @@ class ProductController extends Controller
 
     public function saveupdatedata($id,Request $request)
     {
+        // $new_data = $request(validate([
+        //     'name' => 'required,max:360'
+        // ]))
         $brand_id = $request['brand_id'];
         $data = $request->except('_token','brand_id','_method');
 
