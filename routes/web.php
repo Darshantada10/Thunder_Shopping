@@ -48,15 +48,16 @@ Route::get('/testing',[AdminController::class,"Testing"]);
 Route::prefix('/admin')->middleware(['admin'])->group(function(){
 
     // index routes
+    Route::get('/',[CategoryController::class,'index']);
     Route::get('/category',[CategoryController::class,'index']);
     // create routes
     Route::get('/category/create',[CategoryController::class,'create']);
     Route::post('/category/create',[CategoryController::class,'store']);
     // // update routes
     Route::get('/category/{category}/edit/{id}',[CategoryController::class,'edit']);
-    // Route::put('/category/{category}/edit/{id}',[CategoryController::class,'update']);
+    Route::put('/category/{category}/edit/{id}',[CategoryController::class,'update']);
     // // delete routes
-    // Route::get('/category/{id}/delete',[CategoryController::class,'destroy']);
+    Route::get('/category/{id}/delete',[CategoryController::class,'destroy']);
     
 
 
