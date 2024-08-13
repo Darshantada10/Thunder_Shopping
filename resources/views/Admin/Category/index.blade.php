@@ -2,6 +2,12 @@
 
 @section('content')
 
+
+@if (session('message'))
+    <h3 class="alert alert-success">{{session('message')}}</h3>
+@endif
+
+
 <div class="card">
     <h5 class="card-header">
         All Brands
@@ -37,6 +43,7 @@
             <td>
                 <a href="{{url('/admin/category/'.$category->slug.'/edit/'.$category->id)}}" class="btn btn-sm btn-primary text-white">Update</a>
                 <a href="{{url('/admin/category/'.$category->id.'/delete/')}}" class="btn btn-sm btn-danger text-white">Delete</a>
+                {{-- <a href="#" data-bs-toggle="modal" data-bs-target="#deletemodal" class="btn btn-sm btn-danger">Delete</a> --}}
             </td>
             
           </tr>
@@ -55,5 +62,39 @@
     </div>
 </div>
 
+{{-- 
+<div class="modal fade" id="deletemodal" tabindex="-1" aria-hidden="true" aria-labelledby="deletemodallabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deletemodallabel">Category Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are You Sure You Want To Delete This Category???</p>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Yes Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> --}}
 
-@endsection
+{{-- @push('style')
+
+<script>
+  window.addEventListener('close-modal',event=>{
+    console.log("inside");
+    
+    $('#deletemodal').modal('hide');
+
+  });
+</script>
+
+    @endpush --}}
+
+    
+  @endsection
