@@ -23,5 +23,10 @@ class Category extends Model
 
     protected $casts = ['other_details'=>'json','status'=>'boolean'];
 
+    public function brands()
+    {
+        return $this->hasMany(Brand::class);
+        // return $this->hasMany(Brand::class,'category_id');
+    }
 
 }
