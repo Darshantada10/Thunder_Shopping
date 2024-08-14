@@ -9,12 +9,12 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','origin','location','rating','seller','logo'];
+    protected $fillable = ['name','slug','status','category_id'];
 
-    public function products()
+    protected $casts = ['status'=>'boolean'];
+
+    public function category()
     {
-        return $this->hasMany(Product::class,'brand_id');
-        // brand has many products
-        // return $brand(class)->hasMany(Product::class,'brand_id');
+        return $this->belongsTo(Category::class);
     }
 }
