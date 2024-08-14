@@ -53,14 +53,14 @@
         </tbody>
       </table>
 
-      <hr>
-      <br>
-      <div class="float-end btn">
-        {{$categories->links()}}
+      {{-- <hr>
+      <br> --}}
+      {{-- <div class="float-end btn"> --}}
+        {{-- </div> --}}
+        
       </div>
-
     </div>
-</div>
+    {{$categories->links()}}
 
 {{-- 
 <div class="modal fade" id="deletemodal" tabindex="-1" aria-hidden="true" aria-labelledby="deletemodallabel">
