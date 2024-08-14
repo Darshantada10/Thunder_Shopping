@@ -29,6 +29,8 @@
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
     <meta name="description" content="" />
+    
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
@@ -44,6 +46,7 @@
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="{{asset('/assets/vendor/fonts/boxicons.css')}}" />
 
+    
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{asset('/assets/vendor/css/core.css')}}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{asset('/assets/vendor/css/theme-default.css')}}" class="template-customizer-theme-css" />
@@ -62,8 +65,10 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{asset('/assets/js/config.js')}}"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    {{-- @style('style') --}}
+    @stack('style')
   </head>
 
   <body>
@@ -158,6 +163,17 @@
               <a href="{{url('/admin/category')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-category-alt"></i>
                 <div data-i18n="Analytics">Category</div>
+              </a>
+            </li>
+           
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Brands</span>
+            </li>
+
+            <li class="menu-item">
+              <a href="{{url('/admin/brands')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-shopping-bag"></i>
+                <div data-i18n="Analytics">Brands</div>
               </a>
             </li>
 
@@ -407,7 +423,7 @@
       
           <!-- Place this tag in your head or just before your close body tag. -->
           <script async defer src="https://buttons.github.io/buttons.js"></script>
-          {{-- @script('script') --}}
+          @stack('script')
 
         </body>
       </html>
