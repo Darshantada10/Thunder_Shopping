@@ -16,6 +16,12 @@ class BrandController extends Controller
         return view('Admin.Brand.Index',compact('categories'));
     }
 
+    public function allbrands()
+    {
+        // this is api endpoint
+        $brands = Brand::all();
+        return response()->json(['brands'=>$brands]);
+    }
     public function store(Request $request)
     {
         // dd($request['name']);
@@ -35,6 +41,8 @@ class BrandController extends Controller
         // $brand->category_id = $request->category_id;
         // // dd($brand);
         // $brand->save();
-        return response()->json(['success'=>"brand saved successfully"]);
+        // session()->flash('message','Brand Saved Successfully');
+        return response()->json(['success'=>"Brand Saved Successfully"]);
+        // return redirect()->back()->with(['message'=>"Brand Saved Successfully"]);
     }
 }
