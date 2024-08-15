@@ -63,6 +63,7 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
     Route::controller(BrandController::class)->group(function(){
 
     Route::get('/brands','index');        
+    Route::get('/all-brands','allbrands');        
     Route::post('/brand/create','store');        
 
 
