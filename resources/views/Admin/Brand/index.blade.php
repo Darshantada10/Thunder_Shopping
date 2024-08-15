@@ -4,9 +4,9 @@
 
 @include('Admin.Brand.addbrand')
 
-@if (session('message'))
-    <h3 class="alert alert-success">{{session('message')}}</h3>
-@endif
+{{-- @if (session('message')) --}}
+    <h3 id="success" class="alert alert-success"></h3>
+{{-- @endif --}}
 
 
 <div class="card">
@@ -30,10 +30,10 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>
-          {{-- @foreach ($categories as $category)
+        <tbody id="all-brands">
+          {{-- @foreach ($categories as $category) --}}
 
-          <tr>
+          {{-- <tr>
             
             <th scope="row">{{$category->id}}</th>
             <td>{{$category->name}}</td>
@@ -47,9 +47,9 @@
                 <a href="{{url('/admin/category/'.$category->id.'/delete/')}}" class="btn btn-sm btn-danger text-white">Delete</a>
             </td>
             
-          </tr>
+          </tr> --}}
 
-            @endforeach --}}
+            {{-- @endforeach --}}
             
         </tbody>
       </table>
@@ -60,31 +60,68 @@
     </div>
     {{-- {{$categories->links()}} --}}
 
+    @push('script')
+        <script>
+            async function displayallbrands()
+        {
+            var data = await fetch('http://localhost:8000/admin/all-brands');
+                
+            var brands = await data.json();
+            
+            // var brandid = document.getElementById('all-brands');
 
-{{-- <div class="modal fade" id="deletemodal" tabindex="-1" aria-hidden="true" aria-labelledby="deletemodallabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deletemodallabel">Category Delete</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Are You Sure You Want To Delete This Category???</p>
-      </div>
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Yes Delete</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> --}}
+            var brandtable = "";
+            // console.log(brands.brands);
+            
+            brands.brands.forEach(brand=> {
+                // console.log(brand.id);
+                brandtable += 
+                
+            `
 
+            <tr>
+            
+              <th scope="row">${brand.id}</th>
+              <td>${brand.name}</td>
+              <td>${brand.slug}</td>
+              <td>${brand.status == '1' ? 'Hidden':'Visible'}</td>
+              <td>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#updatebrand" class="btn btn-sm btn-success">Update</a>
+              <a href="#" data-bs-toggle="modal" data-bs-target="#deletebrand" class="btn btn-sm btn-danger">Delete</a>
+              </td>
+            
+            </tr>
+            
+            `
+            
+          });
+          document.getElementById('all-brands').innerHTML = brandtable;
+          // console.log(brands);
+          
+        }
+        
+                      
+        displayallbrands();
+      
+      </script>
+    @endpush
+
+    {{-- //  <a href="{{url('/admin/category/'.$category->slug.'/edit/'.$category->id)}}" class="btn btn-sm btn-primary text-white">Update</a>
+    //  <a href="{{url('/admin/category/'.$category->id.'/delete/')}}" class="btn btn-sm btn-danger text-white">Delete</a> --}}
   {{-- @push('script')
       
       <script>
-        window.addEventListener('')
+        function modal()
+        {
+          console.log("inside function");
+          
+          $('#addbrand').modal('hide');
+        
+        }
+        window.addEventListener('close-modal',event => {
+          
+          $('#addbrand').modal('hide');
+        });
       </script>
   
   @endpush --}}
