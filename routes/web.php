@@ -65,6 +65,9 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
     Route::get('/brands','index');        
     Route::get('/all-brands','allbrands');        
     Route::post('/brand/create','store');        
+    Route::get('/api/brand/{id}','fetchdata');        
+    Route::post('/api/brand/update/{id}','updatedata');        
+    Route::get('/api/brand/delete/{id}','deletedata');        
 
 
     });
