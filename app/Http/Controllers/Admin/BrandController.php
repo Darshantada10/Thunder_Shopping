@@ -45,4 +45,30 @@ class BrandController extends Controller
         return response()->json(['success'=>"Brand Saved Successfully"]);
         // return redirect()->back()->with(['message'=>"Brand Saved Successfully"]);
     }
+
+    public function fetchdata($id)
+    {
+        $data = Brand::with('category')->findOrFail($id);
+        // $data = Brand::findOrFail($id)->with('category')->get();
+        // dd($data);
+        return response()->json($data);
+    }
+
+    public function updatedata($id, Request $request)
+    {
+        $data = Brand::findOrFail($id)->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->slug),
+            'status' => $request->status == true ? '1' : '0',
+            'category_id' => $request->category_id,
+        ]);
+        return response()->json(['success'=>"Brand Updated Successfully"]);
+
+        // dd($data,$request);
+    }
+
+    public function deletedata($id)
+    {
+        dd($id);
+    }
 }
