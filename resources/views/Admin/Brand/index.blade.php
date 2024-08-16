@@ -86,13 +86,14 @@
               <td>${brand.slug}</td>
               <td>${brand.status == '1' ? 'Hidden':'Visible'}</td>
               <td>
-              <a href="#" data-bs-toggle="modal" data-bs-target="#updatebrand" class="btn btn-sm btn-success">Update</a>
-              <a href="#" data-bs-toggle="modal" data-bs-target="#deletebrand" class="btn btn-sm btn-danger">Delete</a>
-              </td>
-            
-            </tr>
-            
-            `
+                <a href="#" data-bs-toggle="modal" data-bs-target="#updatebrand" data-id="${brand.id}"  class="btn btn-sm btn-success">Update</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#deletebrand" onClick="deletebrand(${brand.id})" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+                
+                </tr>
+                
+                `
+                // <a href="#" data-bs-toggle="modal" data-bs-target="#updatebrand" onClick="updatebrand(${brand.id})"  class="btn btn-sm btn-success">Update</a>
             
           });
           document.getElementById('all-brands').innerHTML = brandtable;
@@ -103,6 +104,60 @@
                       
         displayallbrands();
       
+
+        // function updatebrand(id)
+        // {
+        //   console.log(id);
+        // }
+
+     
+
+
+        document.addEventListener('DOMContentLoaded',function(){
+          
+          var updatemodal = document.getElementById('updatebrand');
+
+          updatemodal.addEventListener('show.bs.modal',function(event){
+
+            var button = event.relatedTarget;
+             var id = button.getAttribute('data-id');
+            // console.log(button);
+            
+            //  console.log(id,"from event");
+             
+            // fetch(`http://localhost:8000/admin/api/brands/${id}`).then(response => response.json())
+            fetch(`/admin/api/brand/${id}`).then(response => response.json()).then(data => {
+              // console.log(data);
+              // document.getElementById('category_id').value =data.category_id;
+              document.querySelector('#updatebrand #category_id').value = data.category_id;
+              document.querySelector('#updatebrand #name').value = data.name;
+              document.querySelector('#updatebrand #id').value = data.id;
+              document.querySelector('#updatebrand #slug').value = data.slug;
+              document.querySelector('#updatebrand #status').checked = data.status === true ? '' : 'checked';
+              // document.getElementById('slug').value = data.slug
+              // document.getElementById('status')
+              
+            }).catch(error => console.error("error fetching data ", error));
+
+          });
+
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </script>
     @endpush
 
