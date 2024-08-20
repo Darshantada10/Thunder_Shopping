@@ -21,6 +21,7 @@ class BrandController extends Controller
         // this is api endpoint
         $brands = Brand::all();
         return response()->json(['brands'=>$brands]);
+        // return response()->json($brands);
     }
     public function store(Request $request)
     {
@@ -69,6 +70,10 @@ class BrandController extends Controller
 
     public function deletedata($id)
     {
-        dd($id);
+        // dd($id);
+        $brand = Brand::find($id);
+        $brand->delete();
+        return response()->json(['success'=>"Brand Deleted Successfully"]);
+
     }
 }
