@@ -150,13 +150,13 @@
 
                  <h3>Are you sure you want to delete this brand?</h3>
 
-
+                    <input type="hidden" id="deleteid">
 
                 </div>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" id="confirmdelete" class="btn btn-danger">Delete</button>
+                    <button type="button" id="confirmdelete" onclick="ConfirmDelete()" class="btn btn-danger">Delete</button>
                 </div>
                 
             </form>
@@ -175,12 +175,19 @@
 function deletebrand(id)
         {
 
-            document.getElementById('confirmdelete').onClick = function(){
+            document.getElementById('deleteid').value = id;
+        }
+
+function ConfirmDelete()
+{
+        var deleteid = document.getElementById('deleteid').value;
+
+            // document.getElementById('confirmdelete').onClick = function(){
 
               
               
               
-            fetch(`/admin/api/brand/delete/${id}`,{
+            fetch(`/admin/api/brand/delete/${deleteid}`,{
                 method: 'get',
                 // body: brandformdata,
                 headers: {'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')}
@@ -196,19 +203,20 @@ function deletebrand(id)
                 // $('#updatebrand input').val('')
                 // $('#updatebrand input[type="checkbox"]').prop('checked',false)
                 // $('#updatebrand select').val('')
+                $('#deletebrand').modal('hide')
 
                 document.getElementById('success').innerText = data.success;
                 displayallbrands();
               }).catch(error => console.error('Error : ',error));
               
-            }
+            // }
           // var deletebrandmodal = document.getElementById('deletebrand');
 
           // deletebrandmodal.addEventListener('show.bs.modal',function(event){
             
           // })
 
-        }
+}
         
     // function branddata()
     // {
