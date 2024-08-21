@@ -8,21 +8,42 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
-    protected $fillable = ['product_data','brand_id'];
 
-    protected $casts = ['product_data'=>'json'];
+    protected $fillable = 
+    [
+        'category_id',
+        'name',
+        'slug',
+        'brand',
+        'small_description',
+        'description',
+        'original_price',
+        'selling_price',
+        'quantity',
+        'trending',
+        'featured',
+        'status',
+        'meta_title',
+        'meta_keyword',
+        'meta_description',
+    ];
 
+    protected $casts = 
+    [
+        'status'=>'boolean',
+        'trending'=>'boolean',
+        'featured'=>'boolean',
+    ];
+
+
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     public function brand()
     {
-        return $this->belongsTo(Brand::class,'brand_id');
-        // product belongs to brand
+        return $this->belongsTo(Brand::class);
     }
-
-    public function productimage()
-    {
-        return $this->hasMany(ProductImage::class,'product_id');
-        // return product has many product image
-    }
-    
 
 }
