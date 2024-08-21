@@ -176,6 +176,17 @@
                 <div data-i18n="Analytics">Brands</div>
               </a>
             </li>
+          
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Products</span>
+            </li>
+
+            <li class="menu-item">
+              <a href="{{url('/admin/products')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-shopping-bags"></i>
+                <div data-i18n="Analytics">Products</div>
+              </a>
+            </li>
 
             {{-- <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Brands</span>
