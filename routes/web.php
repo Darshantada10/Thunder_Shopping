@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductImageController;
 
@@ -72,7 +72,14 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
 
     });
 
+    Route::controller(ProductController::class)->group(function(){
 
+        Route::get('/products','index');
+        Route::get('/product/create','create');
+
+
+
+    });
 
 
 });
