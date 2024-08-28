@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -80,6 +81,21 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
 
 
     });
+   
+    Route::controller(ColorController::class)->group(function(){
+
+        Route::get('/colors','index');
+        Route::get('/color/create','create');
+        Route::post('/color/save','save');
+        Route::get('/color/edit/{id}','edit');
+        Route::put('/color/update/{id}','update');
+        Route::get('/color/delete/{id}','delete');
+
+
+
+    });
+
+
 
 
 });
