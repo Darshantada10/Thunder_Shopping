@@ -187,6 +187,17 @@
                 <div data-i18n="Analytics">Products</div>
               </a>
             </li>
+           
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Colors</span>
+            </li>
+
+            <li class="menu-item">
+              <a href="{{url('/admin/colors')}}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-palette"></i>
+                <div data-i18n="Analytics">Colors</div>
+              </a>
+            </li>
 
             {{-- <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Brands</span>
