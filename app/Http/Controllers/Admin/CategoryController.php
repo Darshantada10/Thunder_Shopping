@@ -33,6 +33,7 @@ class CategoryController extends Controller
         $category->name = $validatedData['name'];
         $category->slug = Str::slug($validatedData['slug']);
         $category->description = $validatedData['description'];
+        $category->image = null;
 
         if($request->hasFile('image'))
         {
