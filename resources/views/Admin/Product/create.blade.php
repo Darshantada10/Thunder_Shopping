@@ -17,6 +17,9 @@
 
         <div class="card-body">
             
+            <form action="" method="POST" enctype="multipart/form-data">
+                @csrf
+
             <ul class="nav nav-pills nav-fill" id="myTab" role="tablist">
 
                 <li class="nav-item" role="presentation">
@@ -60,10 +63,16 @@
                     <div class="mb-3">
                         <label for="category">Select Category</label>
                         <select name="category_id" id="category_id" class="form-control">
-                            
-                            @foreach ($categories as $category)
+                            <option value="" >--Select Category--</option>
+
+                            @forelse ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
-                            @endforeach
+
+                                @empty
+                                
+                                <option value="">No Category Found</option>
+                                
+                            @endforelse
                             
                         </select>
                     </div>
@@ -71,10 +80,15 @@
                     <div class="mb-3">
                         <label for="category">Select Brand</label>
                         <select name="brand" id="brand" class="form-control">
-                            
-                            @foreach ($brands as $brand)
+                            <option value="" >--Select Brand--</option>
+
+                            @forelse ($brands as $brand)
                                 <option value="{{$brand->id}}">{{$brand->name}}</option>
-                            @endforeach
+                                
+                                @empty
+                                        
+                                <option value="">No Brand Found</option>
+                            @endforelse
 
                         </select>
                     </div>
@@ -179,8 +193,28 @@
                
                 <div class="tab-pane fade border p-3" id="color-tab-pane" role="tabpanel" aria-labelledby="color-tab" tabindex="0">
                             <div class="mb-3">
-                                <label for="color">Product Color</label>
-                                <input type="file" multiple name="image[]" id="image" class="form-control">
+                                <label for="colors">Product Color</label>
+                                <div class="row">
+                                    @forelse ($colors as $color)
+                                        
+                                    <div class="col-md-3">
+                                        <div class="p-2 border mb-3">
+                                            Color : <input type="checkbox" name="colors[{{$color->id}}]" value="{{$color->id}}" >{{$color->name}}
+                                            <br>
+                                            Quantity : <input type="number" name="colorquantity[{{$color->id}}]" id="colorquantity" style="width:70px; border:1px solid">
+
+                                        </div>
+                                    </div>
+
+                                    @empty
+                                        
+                                    <div class="col-md-12">
+                                        <h1>No Color Found</h1>
+                                    </div>
+                                    
+                                    @endforelse
+
+                                </div>
                             </div>
                 </div>
 
@@ -189,7 +223,7 @@
             <div>
                 <button type="submit" class="btn btn-primary float-end">Add Product</button>
             </div>
-
+        </form>
 
         </div>
 
