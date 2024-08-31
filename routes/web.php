@@ -77,6 +77,7 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
 
         Route::get('/products','index');
         Route::get('/product/create','create');
+        Route::post('/product/create','save');
 
 
 
