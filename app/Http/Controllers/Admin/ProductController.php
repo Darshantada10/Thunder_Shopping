@@ -55,20 +55,46 @@ class ProductController extends Controller
             'meta_description' => $data['meta_description'],
         ]);
 
-        // dd($request);
-        if($request->colorquantity)
+
+        if($request->hasFile('image'))
         {
-            foreach($request->colorquantity as $key => $value)
+            $uploadpath = 'uploads/products/';
+
+            $i = 1;
+
+            foreach ($request->file('image') as  $imagefile) 
+            {
+                $extension = $imagefile->getClientOriginalExtension();
+                $filename = time().$i++.'.'.$extension;
+                $imagefile->move($uploadpath,$filename);
+
+                $finalimage = $uploadpath.$filename;
+
+                $product->productimage()->create([
+                    'product_id' => $product->id,
+                    'image' => $finalimage
+                ]);
+
+            }
+        }
+
+
+
+        // dd($request->colors);
+        if($request->colors)
+        {
+            foreach($request->colors as $key => $value)
             {
                 // dd($key,$value);
-                $product->productcolor()->create([
+                $product->productcolors()->create([
                     'product_id' => $product->id,
-                    'color_id' => $key,
-                    'quantity' => $value,
+                    'color_id' => $value,
+                    'quantity' => $request->colorquantity[$key] ?? 0,
                 ]);
             }
         }
 
+        return redirect('/admin/products')->with('message','Product Created Successfully');
 
 
 
