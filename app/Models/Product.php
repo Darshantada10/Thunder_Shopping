@@ -50,7 +50,7 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class,'product_id','id');
     }
-    public function productcolor()
+    public function productcolors()
     {
         return $this->hasMany(ProductColor::class,'product_id','id');
     }
