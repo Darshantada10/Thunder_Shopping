@@ -16,6 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::orderBy('id','DESC')->paginate(10);
+        // dd($products->name);
         return view('Admin.Product.index',compact('products'));
     }
 
@@ -25,7 +26,17 @@ class ProductController extends Controller
         $brands = Brand::all();
         $colors = Color::where('status','0')->get();
         return view('Admin.Product.create',compact('categories','brands','colors'));
+    }
 
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        $brands = Brand::all();
+        $product_color = $product->productcolors->pluck('color_id')->toArray();
+        $colors = Color::whereNotIn('id',$product_color)->get();
+
+        return view('Admin.Product.update',compact('categories','product','brands','colors'));
     }
 
     public function save(ProductFormRequest $request)
@@ -39,7 +50,7 @@ class ProductController extends Controller
         $product = $category->products()->create([
 
             'category_id' => $data['category_id'],
-            'brand' => $data['brand'],
+            'brand_id' => $data['brand_id'],
             'name' => $data['name'],
             'slug' => Str::slug($data['slug']),
             'small_description' => $data['small_description'],
@@ -54,7 +65,6 @@ class ProductController extends Controller
             'meta_keyword' => $data['meta_keyword'],
             'meta_description' => $data['meta_description'],
         ]);
-
 
         if($request->hasFile('image'))
         {
@@ -78,8 +88,6 @@ class ProductController extends Controller
             }
         }
 
-
-
         // dd($request->colors);
         if($request->colors)
         {
@@ -95,8 +103,5 @@ class ProductController extends Controller
         }
 
         return redirect('/admin/products')->with('message','Product Created Successfully');
-
-
-
     }
 }
