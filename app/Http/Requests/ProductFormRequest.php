@@ -23,7 +23,7 @@ class ProductFormRequest extends FormRequest
     {
         return [
                 'category_id' => ['required','integer'],
-                'brand' => ['required','integer'],
+                'brand_id' => ['required','integer'],
                 'name' => ['required','string'],
                 'slug' => ['required','string'],
                 'small_description' => ['required','string'],
