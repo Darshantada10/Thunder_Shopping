@@ -79,7 +79,7 @@
                    
                     <div class="mb-3">
                         <label for="category">Select Brand</label>
-                        <select name="brand" id="brand" class="form-control">
+                        <select name="brand_id" id="brand_id" class="form-control">
                             <option value="" >--Select Brand--</option>
 
                             @forelse ($brands as $brand)
