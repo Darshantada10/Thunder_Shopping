@@ -32,25 +32,25 @@
           </tr>
         </thead>
         <tbody>
-          {{-- @foreach ($categories as $category)
+          @foreach ($products as $product)
 
           <tr>
-            
-            <th scope="row">{{$category->id}}</th>
-            <td>{{$category->name}}</td>
-            <td>{{$category->status == '1' ? 'Hidden':'Visible'}}</td>
+            <th scope="row">{{$product->id}}</th>
+            <td>{{$product->category->name}}</td>   {{-- Category is the relation we have defined in model  --}}
+            <td>{{$product->brand->name}}</td> 
+            {{-- Brand is the relation we have defined in model  --}}
+            <td>{{$product->name}}</td>
+            <td>{{$product->selling_price}}</td>
+            <td>{{$product->quantity}}</td>
+            <td>{{$product->status == '1' ? 'Hidden':'Visible'}}</td>
             <td>
-              <img src="/uploads/category/{{$category->image}}" alt="Category Image" height="50px" width="50px">
-
-            </td>
-            <td>
-                <a href="{{url('/admin/category/'.$category->slug.'/edit/'.$category->id)}}" class="btn btn-sm btn-primary text-white">Update</a>
-                <a href="{{url('/admin/category/'.$category->id.'/delete/')}}" class="btn btn-sm btn-danger text-white">Delete</a>
+                <a href="{{url('/admin/product/'.$product->id.'/edit/')}}" class="btn btn-sm btn-primary text-white">Update</a>
+                <a href="{{url('/admin/product/'.$product->id.'/delete/')}}" class="btn btn-sm btn-danger text-white">Delete</a>
             </td>
             
           </tr>
 
-            @endforeach --}}
+            @endforeach
             
         </tbody>
       </table>
