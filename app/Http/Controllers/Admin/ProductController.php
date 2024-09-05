@@ -10,6 +10,9 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
+use App\Models\ProductColor;
+use App\Models\ProductImage;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -103,5 +106,44 @@ class ProductController extends Controller
         }
 
         return redirect('/admin/products')->with('message','Product Created Successfully');
+    }
+
+    public function deleteimage($id)
+    {
+        $productimage = ProductImage::findOrFail($id);
+
+        // if(File::exists('/upload/category/'.$productimage->image))
+        if(File::exists($productimage->image))
+        {
+            File::delete($productimage->image);
+        }
+
+        $productimage->delete();
+
+        return redirect()->back()->with('message','Image Deleted Successfully');
+    }
+
+    public function updatecolor($id,Request $request)
+    {
+        // dd($id,$request->product_id);
+
+        $data = Product::findOrFail($request->product_id)->productcolors()->where('id',$id)->first();
+
+        // dd($data);
+        $data->update([
+            'quantity' => $request->quantity
+        ]);
+
+        return response()->json(['message'=>'Product Color Quantity Updated Successfully']);
+    }
+
+    public function deletecolor($id)
+    {
+        $color = ProductColor::findOrFail($id);
+
+        $color->delete();
+
+        return response()->json(['message'=>'Product Color Quantity Deleted Successfully']);
+
     }
 }
