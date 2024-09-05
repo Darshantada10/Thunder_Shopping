@@ -250,11 +250,13 @@
                                                 <tr class="prod-color-tr">
                                                     <td>{{$color->color->name}}</td>
                                                     <td>
-                                                        <input type="text" value="{{$color->quantity}}">
-                                                        <button class="btn btn-sm btn-primary">Update</button>
+                                                        <div class="input-group mb-3" style="width:150px;">
+                                                            <input type="text" value="{{$color->quantity}}" class="productcolorquantity form-control form-control-sm">
+                                                            <button type="button" value="{{$color->id}}" class="btn btn-sm btn-primary updateproductcolor">Update</button>
+                                                        </div>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-sm btn-danger" >Delete</button>
+                                                        <button type="button" value="{{$color->id}}" class="btn btn-sm btn-danger deleteproductcolor" >Delete</button>
                                                     </td>
                                                 </tr>
                                         @endforeach
@@ -277,6 +279,68 @@
 
 
     </div>
+
+
+    @push('script')
+        
+
+    <script>
+        $(document).ready(function(){
+            
+            $.ajaxSetup({
+                headers : {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on('click','.updateproductcolor',function(){
+                var product_id = "{{$product->id}}";
+                var product_color_id = $(this).val();
+                var quantity = $(this).closest('.prod-color-tr').find('.productcolorquantity').val();
+                // console.log(product_color_id);
+                // console.log(product_id);
+                // console.log(quantity);
+                
+                if(quantity <= 0)
+                {
+                    alert('Quantity is Required');
+                    return false;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/admin/product-color/"+product_color_id,
+                    data: {'product_id' : product_id,'product_color_id':product_color_id,'quantity':quantity},
+                    success:function(response)
+                    {
+                        alert(response.message)
+                    }
+                });
+            });
+           
+            $(document).on('click','.deleteproductcolor',function(){
+                var product_color_id = $(this).val();
+                var deletethis = $(this);
+
+                $.ajax({
+                    type:'get',
+                    url:'/admin/product-color/'+product_color_id+'/delete',
+                    success: function(response)
+                    {
+                        deletethis.closest('.prod-color-tr').remove();
+                        alert(response.message);
+                    }
+                });
+
+            });
+
+
+        });
+    </script>
+
+
+    @endpush
+
 
 
 @endsection
