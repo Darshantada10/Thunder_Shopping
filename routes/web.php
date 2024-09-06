@@ -79,7 +79,8 @@ Route::prefix('/admin')->middleware(['admin'])->group(function(){
         Route::get('/product/create','create');
         Route::post('/product/create','save');
         Route::get('/product/{id}/edit','edit');
-        Route::put('/product/{id}','updateproduct');
+        Route::get('/product/{id}/delete','deleteproduct');
+        Route::put('/product-update/{id}','updateproduct');
         Route::get('/product-image/{id}/delete','deleteimage');
         Route::post('/product-color/{id}','updatecolor'); // ajax
         Route::get('/product-color/{id}/delete','deletecolor'); // ajax
