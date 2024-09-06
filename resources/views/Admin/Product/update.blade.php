@@ -17,7 +17,7 @@
 
         <div class="card-body">
             
-            <form action="{{url('product/'.$product->id)}}" method="POST" enctype="multipart/form-data">
+            <form action="{{url('/admin/product-update/'.$product->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('put')
 
@@ -270,7 +270,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary float-end">Add Product</button>
+                <button type="submit" class="btn btn-primary float-end">Update Product</button>
             </div>
         </form>
 
