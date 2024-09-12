@@ -17,7 +17,9 @@ class HomeController extends Controller
         // return view("Layouts/App");
         // return view("Layouts.App");
 
-        $products = Product::all();
+        // $products = Product::all();
+        // $products = Product::where('trending','=','1');
+        $products = Product::where('trending','1')->latest()->take(10)->get();
         // dd($products);
         return view("Home.Index",compact('products'));
     }
