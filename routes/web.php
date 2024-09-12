@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FrontEnd\ProductController as FrontEndProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductImageController;
 
@@ -34,6 +35,7 @@ Route::get('/about',[HomeController::class,'about']);
 Route::get('/service',[HomeController::class,'service']);
 Route::get('/home/index',[HomeController::class,'index']);
 
+Route::get('/products/{slug}/{id}',[FrontEndProductController::class,'index']);
 
 Route::get('/register',[RegisterController::class,'index']);
 Route::post('/register',[RegisterController::class,'savedata']);
