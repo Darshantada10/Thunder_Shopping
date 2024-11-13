@@ -159,7 +159,7 @@
                     <button type="button" id="confirmdelete" onclick="ConfirmDelete()" class="btn btn-danger">Delete</button>
                 </div>
                 
-            </form>
+            {{-- </form> --}}
         </div>
     </div>
 
