@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         // $product = Product::findOrFail($id);
         $product = Product::where('id',$id)->where('slug',$slug)->first();
-        // dd($product);
+        // dd($product->productimage);
         return view('FrontEnd.Product.index',compact('product'));
     }
 }
